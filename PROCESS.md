@@ -16,15 +16,13 @@ So the loop was less "prompt → accept" and more "prompt → read carefully →
 
 ## What it actually got right
 
-Honestly, the structural stuff was solid from the start. The responsive Tailwind grid, the component layout, the CSS variable alignment between the dashboard and landing page — I didn't have to touch any of that. The roster mockup in the hero (the mini shift table with colour-coded AM/PM/Night columns) came back exactly how I'd pictured it. The GitHub Actions YAML for deploying a Next.js monorepo to GitHub Pages was also correct in structure, which saved me a lot of time since I hadn't done that exact setup before.
+Honestly, the structural stuff was solid from the start. The responsive Tailwind grid, the component layout, the CSS variable alignment between the dashboard and landing page — I didn't have to touch any of that. The roster mockup in the hero (the mini shift table with colour-coded AM/PM/Night columns) came back exactly how I'd pictured it. The Vercel deployment config for a Next.js monorepo — setting the Root Directory per project — was also straightforward, which saved me a lot of time since I hadn't done that exact setup before.
 
 ---
 
 ## What I had to fix myself
 
-The deployment broke on first try. Next.js was outputting absolute `/_next/static/...` paths in the HTML, but GitHub Pages serves the site from a `/v360-web-assessment/` subdirectory, so the browser was looking for assets that didn't exist at that path. Claude hadn't set a `basePath`. I worked out what was happening by looking at the network tab, then told it what was wrong and how to fix it — `basePath: process.env.BASE_PATH || ''` in both configs, injected in CI at build time.
-
-I also caught a `generator: 'v0.app'` metadata tag sitting in both `layout.tsx` files. That's a field that shows up in the page's `<head>` and signals to anyone who views source that the project came from a scaffold generator. Removed it, along with a `@vercel/analytics` import that was doing nothing since we're on GitHub Pages.
+I also caught a `generator: 'v0.app'` metadata tag sitting in both `layout.tsx` files. That's a field that shows up in the page's `<head>` and signals to anyone who views source that the project came from a scaffold generator. Removed it. Both projects are deployed on Vercel — each as a separate project with its subdirectory set as the Root Directory, and `@vercel/analytics` is wired up on both.
 
 The billing toggle was visually broken — the "off" state used `bg-border`, which in our colour scheme is nearly identical to the page background, so it was essentially invisible. The knob positioning also relied on absolute placement without an explicit `left` value, which behaved inconsistently. I replaced the whole thing with a segmented control. Cleaner and unambiguous.
 
