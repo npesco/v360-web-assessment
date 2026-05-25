@@ -4,16 +4,14 @@ This repo contains two projects built for the v360 web development assessment.
 
 | Project | Live URL | Description |
 |---------|----------|-------------|
-| [`landing/`](./landing) | **[npesco.github.io/v360-web-assessment](https://npesco.github.io/v360-web-assessment/)** | WellCare — marketing landing page |
-| [`dashboard/`](./dashboard) | **[npesco.github.io/v360-web-assessment/dashboard](https://npesco.github.io/v360-web-assessment/dashboard/)** | WellCare — rostering dashboard |
-
-> GitHub Pages deployment is automatic — every push to `main` triggers the Actions workflow that builds both apps and publishes them to the `gh-pages` branch.
+| [`landing/`](./landing) | **[npesco-wellcare-landing.vercel.app](https://npesco-wellcare-landing.vercel.app/)** | WellCare — marketing landing page |
+| [`dashboard/`](./dashboard) | **[npesco-wellcare-dashboard.vercel.app](https://npesco-wellcare-dashboard.vercel.app/)** | WellCare — rostering dashboard |
 
 ---
 
 ## Challenge 1 — WellCare Landing Page
 
-**Live:** https://npesco.github.io/v360-web-assessment/
+**Live:** https://npesco-wellcare-landing.vercel.app/
 
 ### Stack
 
@@ -46,7 +44,7 @@ npm run build   # output → landing/out/
 
 ## Challenge 2 — WellCare Rostering Dashboard
 
-**Live:** https://npesco.github.io/v360-web-assessment/dashboard/
+**Live:** https://npesco-wellcare-dashboard.vercel.app/
 
 ### Run locally
 
@@ -61,15 +59,7 @@ npm run dev
 
 ## Deployment
 
-Both projects deploy automatically via [`.github/workflows/deploy-landing.yml`](.github/workflows/deploy-landing.yml):
-
-1. Builds `landing/` with `BASE_PATH=/v360-web-assessment`
-2. Builds `dashboard/` with `BASE_PATH=/v360-web-assessment/dashboard`
-3. Merges both static exports into a single `combined/` folder
-4. Pushes to the `gh-pages` branch — GitHub Pages serves it live
-
-**To enable GitHub Pages** (one-time, in repo Settings):
-- Source → `Deploy from a branch` → branch: `gh-pages` → folder: `/ (root)`
+Both projects are deployed on Vercel, each as a separate project with its respective subdirectory set as the Root Directory.
 
 ---
 
@@ -90,7 +80,6 @@ See **[PROCESS.md](./PROCESS.md)** for the full write-up covering:
 v360-web-assessment/
 ├── .github/
 │   └── workflows/
-│       └── deploy-landing.yml   # builds + deploys both projects
 ├── landing/                     # Challenge 1 — WellCare landing page
 │   ├── app/
 │   │   ├── globals.css
