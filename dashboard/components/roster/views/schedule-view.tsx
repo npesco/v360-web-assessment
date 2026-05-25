@@ -60,9 +60,15 @@ export function ScheduleView({ staff, shifts }: ScheduleViewProps) {
     setSelectedStaff(null);
   };
 
+  const handleGoToToday = () => {
+    const now = new Date();
+    const diff = now.getDate() - now.getDay();
+    setStartDate(new Date(now.getFullYear(), now.getMonth(), diff));
+  };
+
   return (
     <>
-      <TopBar startDate={startDate} onDateChange={handleDateChange} onFilterChange={() => {}} />
+      <TopBar startDate={startDate} onDateChange={handleDateChange} onFilterChange={() => {}} onGoToToday={handleGoToToday} />
       <div className="flex-1 overflow-auto">
         <ShiftGrid
           staff={staff}
