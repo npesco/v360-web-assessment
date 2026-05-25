@@ -1,6 +1,6 @@
 'use client';
 
-import { Calendar, Users, BarChart3, Settings, Menu, X } from 'lucide-react';
+import { Calendar, Users, BarChart3, Settings, Menu, X, HouseHeart } from 'lucide-react';
 import { useState } from 'react';
 
 type TabType = 'schedule' | 'staff' | 'analytics' | 'settings';
@@ -43,9 +43,9 @@ export function RosterSidebar({ activeTab, onTabChange }: RosterSidebarProps) {
         {/* Logo */}
         <div className="w-full px-4 py-6 flex items-center justify-center sm:justify-start gap-3">
           <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center flex-shrink-0">
-            <Calendar size={20} className="text-primary-foreground" />
+            <HouseHeart size={20} className="text-primary-foreground" />
           </div>
-          <h1 className="hidden sm:block font-bold text-foreground text-lg">RosterPro</h1>
+          <h1 className="hidden sm:block font-bold text-foreground text-lg">WellCare</h1>
         </div>
 
         {/* Navigation */}

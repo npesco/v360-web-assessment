@@ -7,7 +7,7 @@ const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'RosterPro - Weekly Rostering Dashboard',
+  title: 'WellCare - Weekly Rostering Dashboard',
   description: 'Professional healthcare staff scheduling and rostering dashboard',
   generator: 'v0.app',
   icons: {
