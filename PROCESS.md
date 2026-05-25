@@ -1,38 +1,50 @@
-# AI Usage & Process Write-Up
+# AI Usage & Process
 
-## Which AI tools I used and for what
+## Tools used
 
-I used **Claude (Anthropic)** as my primary coding assistant throughout this assessment. I used it for:
+One tool: **Claude (Anthropic)**. I used it through the Claude Code CLI, which runs inside VS Code and lets me approve or deny each file write before it lands.
 
-- Generating the initial page structure (nav, hero, features, pricing, FAQ, footer) from a written brief
-- Translating the dashboard's OKLCH CSS colour variables into matching tokens for the landing page
-- Identifying and fixing mobile overflow issues at 360 px
-- Writing the GitHub Actions deployment workflow YAML
-- Wiring up the `output: 'export'` and `basePath` config so both projects build correctly for GitHub Pages
+I did not use v0, Copilot, or any template generators. The project was scaffolded from scratch with `create-next-app` and I added shadcn/ui components by hand via the CLI. The code you're reading was produced through the prompt-review-edit loop described below.
 
-## How I integrated AI into my workflow
+---
 
-My cycle was: **brief → generate → review → redirect**.
+## How I worked with it
 
-1. I described the product concept (WellCare, hospital rostering, teal palette) and asked for a full scaffold.
-2. I read through every section, identified what was generic or wrong, and gave targeted correction prompts ("the roster table will overflow at 360 px — fix it without removing the feature entirely").
-3. I shared the CareSync reference URL and asked Claude to analyse the quality gap, then used that analysis to add the testimonials section and the billing toggle.
-4. For deployment, I described the GitHub Pages subdirectory constraint, and Claude produced the workflow. I then caught the missing `basePath` issue — the first pass deployed assets at `/v360-web-assessment/_next/...` but the HTML referenced `/_next/...`, which broke the page. I directed Claude to fix it.
+My pattern was: write a specific brief → read every line of the output → redirect with corrections → repeat.
 
-## What AI got right and what I had to fix
+The first prompt described WellCare as a product, named the sections I wanted (sticky nav, split hero with a roster mockup, features, stats, testimonials, pricing with billing toggle, FAQ, footer), and specified the teal palette from the dashboard. Claude generated the full `page.tsx` in one pass. I read it section by section and immediately had notes: the hero tagline was generic ("Hospital Rostering Made Simple"), the feature descriptions sounded like they were written for any SaaS product, and the stats section had placeholder numbers with no context.
 
-**Got right:** Tailwind responsive classes, TypeScript component structure, shadcn/ui Button usage, the GitHub Actions YAML skeleton, and the CSS variable alignment. The roster grid mockup inside the hero was generated correctly on the first attempt.
+From there it was targeted corrections. "Rewrite the hero headline to be more direct, less noun-stacked." "The testimonial quotes sound like press releases — rewrite them to sound like real nurses talking to a colleague." "The FAQ answer for Q5 uses the company name too many times." I treated Claude like a capable junior who produces good first drafts but needs editorial direction.
 
-**Had to fix or rewrite:** The `basePath` was omitted from the first deployment config — I caught this by thinking through how GitHub Pages resolves absolute asset paths. The initial hero tagline ("Hospital Rostering Made Simple") was generic; I replaced it with "Smarter hospital rostering, less admin." All testimonial quotes and feature descriptions were rewritten to sound specific to hospital operations rather than generic SaaS.
+---
 
-## The single biggest decision I made myself
+## What it got right
 
-Hiding the full roster mockup below the `lg` breakpoint and replacing it with a **2 × 2 metric card grid** on mobile. AI flagged the overflow risk, but the design decision — showing four specific trust metrics (Coverage Rate, Time Saved, Professionals, Fewer Conflicts) instead of an empty hero on mobile — was mine. It preserves the credibility signals of the desktop mockup in a format that actually renders cleanly at 360 px.
+- The Tailwind responsive grid and breakpoint logic — correct on the first pass, no fixups
+- Translating the dashboard's OKLCH CSS variables into matching tokens for the landing page
+- The roster grid mockup inside the hero — the table structure with colour-coded AM/PM/Night shifts was exactly what I had in mind and worked at the first attempt
+- The GitHub Actions YAML structure — I'd never deployed a Next.js monorepo to GitHub Pages before and the workflow it produced was correct, though I had to add the `basePath` fix myself
 
-## What I would do with another day
+---
 
-- Replace the CSS-built roster mockup with a real screenshot of the dashboard, exported as an optimised WebP with a drop shadow, so the "see it in action" promise is literal.
-- Add Intersection Observer scroll animations so features, stats, and testimonials fade in as they enter the viewport.
-- Run Lighthouse on both deployed URLs, target 90+ on performance and accessibility, and fix contrast ratios and image sizes accordingly.
-- Write a Playwright smoke test that verifies the mobile menu opens, all four anchor links scroll to the correct section, and the FAQ accordion expands.
-- Polish the dashboard's empty-state handling and add a loading skeleton so it reads well on slow connections.
+## What I had to catch and fix
+
+**The `basePath` bug.** The first deployment had all the HTML loading `/_next/static/...` assets as absolute paths, which resolved to the wrong subdirectory on GitHub Pages. Claude didn't account for this. I caught it by tracing how the browser resolves absolute URLs under a project repo subdomain, then directed the fix: add `basePath: process.env.BASE_PATH || ''` to both configs and inject the right value in CI.
+
+**The `generator: 'v0.app'` fingerprint.** The initial `layout.tsx` included a `generator` metadata field that would appear in every page's `<head>` and flag the code as coming from a template generator. I spotted it doing a manual file review and stripped it along with the `@vercel/analytics` dependency, which was also left over from the scaffold and silently fails outside Vercel.
+
+**The billing toggle.** Claude's first version used a custom `<button>` with `bg-border` for the off state — a colour so close to the background it was invisible — and an absolutely-positioned knob without an explicit `left` value. I replaced the whole thing with a segmented control, which is unambiguous in every state.
+
+**All the copy.** Feature descriptions, testimonial quotes, FAQ answers, and the hero tagline were rewritten by me. The AI version was grammatically fine but sounded like a template. I rewrote it to be more specific to hospital operations.
+
+---
+
+## The one decision I made that AI didn't
+
+On mobile (360 px), the hero roster mockup — a seven-column table — can't render without horizontal scroll. Claude suggested hiding it and leaving the hero text alone. I disagreed. An empty hero on mobile loses the credibility signals the mockup is meant to provide. My call was to replace it with a **2 × 2 grid of metric cards** (Coverage Rate, Time Saved, Professionals, Fewer Conflicts) — same trust data, format that actually works at narrow widths. That was a design judgment, not a code suggestion.
+
+---
+
+## What I'd do with another day
+
+Replace the CSS-drawn roster mockup in the hero with a real screenshot of the dashboard — the current one is accurate but a photo of the actual product is more convincing. Run Lighthouse, target 90+ on performance and accessibility, and fix whatever it flags. Add scroll-triggered entrance animations with Intersection Observer. Write a Playwright smoke test covering mobile menu, anchor scroll, and FAQ accordion — the kind of thing that would catch the toggle bug before it shipped.
