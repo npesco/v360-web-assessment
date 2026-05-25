@@ -383,7 +383,7 @@ export default function LandingPage() {
           </div>
 
           {/* Product Feature Cards */}
-          <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
+          <div className="grid md:grid-cols-1 gap-12 items-center mb-16">
             {/* Left Column */}
             <div className="space-y-6">
               <div className="p-6 rounded-lg border border-border hover:border-accent transition-colors bg-card">
@@ -429,8 +429,6 @@ export default function LandingPage() {
               </div>
             </div>
           </div>
-
-          {/* Process Steps */}
           <div className="space-y-6">
             <h3 className="text-2xl font-bold text-foreground text-center mb-12">How RosterFlow Works</h3>
             <div className="grid md:grid-cols-4 gap-6">
