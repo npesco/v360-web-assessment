@@ -10,10 +10,10 @@ import {
   AlertCircle,
   BarChart3,
   CheckCircle2,
-  Calendar,
   Shield,
   TrendingUp,
   ChevronDown,
+  HouseHeart,
 } from 'lucide-react';
 
 export default function LandingPage() {
@@ -31,7 +31,7 @@ export default function LandingPage() {
 
   const features = [
     {
-      icon: Calendar,
+      icon: HouseHeart,
       title: 'Intelligent Scheduling',
       description:
         'Automated shift assignment that considers staff preferences, skill levels, and compliance requirements.',
@@ -78,15 +78,15 @@ export default function LandingPage() {
   const faqs = [
     {
       id: 'q1',
-      question: 'How quickly can we implement RosterFlow?',
+      question: 'How quickly can we implement WellCare?',
       answer:
         'Most hospitals are up and running within 2-4 weeks. Our implementation team handles data migration, staff training, and system configuration to ensure a smooth transition.',
     },
     {
       id: 'q2',
-      question: 'Does RosterFlow integrate with existing HR systems?',
+      question: 'Does WellCare integrate with existing HR systems?',
       answer:
-        'Yes! RosterFlow integrates with major HR systems, payroll providers, and scheduling software. We support custom integrations for legacy systems as well.',
+        'Yes! WellCare integrates with major HR systems, payroll providers, and scheduling software. We support custom integrations for legacy systems as well.',
     },
     {
       id: 'q3',
@@ -98,13 +98,13 @@ export default function LandingPage() {
       id: 'q4',
       question: 'How secure is our scheduling data?',
       answer:
-        'RosterFlow uses hospital-grade encryption, HIPAA compliance, and regular security audits. Data is backed up in multiple geographic locations.',
+        'WellCare uses hospital-grade encryption, HIPAA compliance, and regular security audits. Data is backed up in multiple geographic locations.',
     },
     {
       id: 'q5',
       question: 'Can we customize the scheduling rules?',
       answer:
-        'Absolutely. RosterFlow allows you to define custom rules, preferences, and constraints specific to your hospital&apos;s needs and policies.',
+        'Absolutely. WellCare allows you to define custom rules, preferences, and constraints specific to your hospital&apos;s needs and policies.',
     },
     {
       id: 'q6',
@@ -177,9 +177,9 @@ export default function LandingPage() {
             {/* Logo */}
             <div className="flex items-center gap-2">
               <div className="w-8 h-8 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center">
-                <Calendar className="w-5 h-5 text-white" />
+                <HouseHeart className="w-5 h-5 text-white" />
               </div>
-              <span className="font-bold text-lg text-foreground">RosterFlow</span>
+              <span className="font-bold text-lg text-foreground">WellCare</span>
             </div>
 
             {/* Desktop Navigation */}
@@ -280,7 +280,7 @@ export default function LandingPage() {
 
             {/* Subheading */}
             <p className="text-pretty max-w-2xl mx-auto text-lg text-foreground/70 leading-relaxed">
-              Automate staff scheduling, eliminate conflicts, and reduce overtime costs. RosterFlow handles the complexity
+              Automate staff scheduling, eliminate conflicts, and reduce overtime costs. WellCare handles the complexity
               so your team can focus on patient care.
             </p>
 
@@ -430,7 +430,7 @@ export default function LandingPage() {
             </div>
           </div>
           <div className="space-y-6">
-            <h3 className="text-2xl font-bold text-foreground text-center mb-12">How RosterFlow Works</h3>
+            <h3 className="text-2xl font-bold text-foreground text-center mb-12">How WellCare Works</h3>
             <div className="grid md:grid-cols-4 gap-6">
               {[
                 { step: '01', title: 'Set Preferences', desc: 'Configure staffing rules and constraints' },
@@ -523,7 +523,7 @@ export default function LandingPage() {
               Frequently Asked Questions
             </h2>
             <p className="text-lg text-foreground/60">
-              Everything you need to know about RosterFlow
+              Everything you need to know about WellCare
             </p>
           </div>
 
@@ -563,7 +563,7 @@ export default function LandingPage() {
             Ready to Transform Your Scheduling?
           </h2>
           <p className="text-xl text-foreground/70 max-w-2xl mx-auto">
-            Join hundreds of hospitals already using RosterFlow to streamline operations and improve staff satisfaction.
+            Join hundreds of hospitals already using WellCare to streamline operations and improve staff satisfaction.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
             <Button size="lg" className="h-12 px-8 text-base">
@@ -585,9 +585,9 @@ export default function LandingPage() {
             <div className="space-y-4">
               <div className="flex items-center gap-2">
                 <div className="w-8 h-8 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center">
-                  <Calendar className="w-5 h-5 text-white" />
+                  <HouseHeart className="w-5 h-5 text-white" />
                 </div>
-                <span className="font-bold text-foreground">RosterFlow</span>
+                <span className="font-bold text-foreground">WellCare</span>
               </div>
               <p className="text-sm text-foreground/60">
                 Smart hospital rostering for the modern era.
@@ -677,7 +677,7 @@ export default function LandingPage() {
           </div>
 
           <div className="border-t border-border pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-foreground/60">
-            <p>&copy; 2024 RosterFlow. All rights reserved.</p>
+            <p>&copy; 2024 WellCare. All rights reserved.</p>
             <div className="flex gap-6">
               <a href="#" className="hover:text-foreground transition">
                 Twitter

@@ -7,7 +7,7 @@ const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'RosterFlow - Hospital Shift Scheduling Made Simple',
+  title: 'WellCare - Hospital Shift Scheduling Made Simple',
   description: 'Smart hospital rostering platform that streamlines staff scheduling, reduces conflicts, and improves operational efficiency. Built for modern healthcare teams.',
   generator: 'v0.app',
   icons: {
