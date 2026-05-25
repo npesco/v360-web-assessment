@@ -582,25 +582,31 @@ export default function LandingPage() {
           </div>
 
           {/* Billing toggle */}
-          <div className="flex items-center justify-center gap-4 mb-12">
-            <button
-              onClick={() => setBilling('monthly')}
-              className={`text-sm font-medium transition-colors ${billing === 'monthly' ? 'text-foreground' : 'text-foreground/40'}`}
-            >
-              Monthly
-            </button>
-            <button
-              onClick={() => setBilling(billing === 'monthly' ? 'annual' : 'monthly')}
-              className={`relative w-11 h-6 rounded-full transition-colors ${billing === 'annual' ? 'bg-primary' : 'bg-border'}`}
-              aria-label="Toggle billing period"
-            >
-              <span className={`absolute top-1 w-4 h-4 bg-white rounded-full shadow transition-transform duration-200 ${billing === 'annual' ? 'translate-x-6' : 'translate-x-1'}`} />
-            </button>
-            <div className="flex items-center gap-2">
-              <button onClick={() => setBilling('annual')} className={`text-sm font-medium transition-colors ${billing === 'annual' ? 'text-foreground' : 'text-foreground/40'}`}>
-                Annual
+          <div className="flex items-center justify-center mb-12">
+            <div className="inline-flex items-center bg-muted rounded-xl p-1 gap-1">
+              <button
+                onClick={() => setBilling('monthly')}
+                className={`px-5 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
+                  billing === 'monthly'
+                    ? 'bg-card text-foreground shadow-sm'
+                    : 'text-foreground/50 hover:text-foreground'
+                }`}
+              >
+                Monthly
               </button>
-              <span className="text-[11px] font-bold text-green-700 bg-green-100 px-2 py-0.5 rounded-full">Save 20%</span>
+              <button
+                onClick={() => setBilling('annual')}
+                className={`flex items-center gap-2 px-5 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
+                  billing === 'annual'
+                    ? 'bg-card text-foreground shadow-sm'
+                    : 'text-foreground/50 hover:text-foreground'
+                }`}
+              >
+                Annual
+                <span className="text-[10px] font-bold text-green-700 bg-green-100 px-1.5 py-0.5 rounded-full">
+                  −20%
+                </span>
+              </button>
             </div>
           </div>
 
