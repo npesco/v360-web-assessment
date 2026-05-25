@@ -276,10 +276,30 @@ export default function LandingPage() {
                   <p className="text-xs text-foreground/45 mt-0.5">4.9 / 5 · 2,400+ healthcare professionals</p>
                 </div>
               </div>
+
+              {/* Mobile-only metric cards — shown instead of the roster mockup */}
+              <div className="lg:hidden grid grid-cols-2 gap-3 pt-2">
+                {[
+                  { icon: CheckCircle2, label: 'Coverage Rate', value: '98.4%', bg: 'bg-green-100', color: 'text-green-600' },
+                  { icon: Clock, label: 'Time Saved', value: '5 hrs/wk', bg: 'bg-primary/10', color: 'text-primary' },
+                  { icon: Users, label: 'Professionals', value: '2,400+', bg: 'bg-primary/10', color: 'text-primary' },
+                  { icon: TrendingUp, label: 'Fewer Conflicts', value: '98%', bg: 'bg-green-100', color: 'text-green-600' },
+                ].map(({ icon: Icon, label, value, bg, color }) => (
+                  <div key={label} className="flex items-center gap-3 p-3 rounded-xl border border-border bg-card">
+                    <div className={`w-8 h-8 rounded-lg ${bg} flex items-center justify-center flex-shrink-0`}>
+                      <Icon className={`w-4 h-4 ${color}`} />
+                    </div>
+                    <div>
+                      <p className="text-[10px] text-foreground/45">{label}</p>
+                      <p className="text-sm font-bold text-foreground">{value}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
 
-            {/* Roster Mockup */}
-            <div className="relative lg:ml-6">
+            {/* Roster Mockup — hidden on mobile to avoid overflow at 360px */}
+            <div className="relative lg:ml-6 hidden lg:block">
               <div className="absolute -top-5 -left-5 z-20 bg-card border border-border rounded-xl px-4 py-3 shadow-xl flex items-center gap-3 animate-in fade-in slide-in-from-left-4 duration-700">
                 <div className="w-9 h-9 rounded-lg bg-green-100 flex items-center justify-center">
                   <CheckCircle2 className="w-4 h-4 text-green-600" />
