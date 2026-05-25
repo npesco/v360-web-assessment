@@ -5,7 +5,7 @@ This repo contains two projects built for the v360 web development assessment.
 | Project | Live URL | Description |
 |---------|----------|-------------|
 | [`landing/`](./landing) | **[npesco.github.io/v360-web-assessment](https://npesco.github.io/v360-web-assessment/)** | WellCare — marketing landing page |
-| [`dashboard/`](./dashboard) | **[npesco.github.io/v360-web-assessment/dashboard](https://npesco.github.io/v360-web-assessment/dashboard/)** | Hospital rostering dashboard |
+| [`dashboard/`](./dashboard) | **[npesco.github.io/v360-web-assessment/dashboard](https://npesco.github.io/v360-web-assessment/dashboard/)** | WellCare — rostering dashboard |
 
 > GitHub Pages deployment is automatic — every push to `main` triggers the Actions workflow that builds both apps and publishes them to the `gh-pages` branch.
 
@@ -44,7 +44,7 @@ npm run build   # output → landing/out/
 
 ---
 
-## Challenge 2 — Rostering Dashboard
+## Challenge 2 — WellCare Rostering Dashboard
 
 **Live:** https://npesco.github.io/v360-web-assessment/dashboard/
 
@@ -100,7 +100,7 @@ v360-web-assessment/
 │   ├── public/
 │   ├── next.config.mjs
 │   └── package.json
-├── dashboard/                   # Challenge 2 — Rostering dashboard
+├── dashboard/                   # Challenge 2 — WellCare rostering dashboard
 │   ├── app/
 │   ├── components/
 │   ├── next.config.mjs
